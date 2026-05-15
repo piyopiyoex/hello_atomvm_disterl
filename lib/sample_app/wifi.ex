@@ -16,7 +16,6 @@ defmodule SampleApp.WiFi do
             [
               dhcp_hostname: @dhcp_hostname,
               connected: &handle_sta_connected/0,
-              disconnected: &handle_sta_disconnected/0,
               got_ip: &handle_sta_got_ip/1,
               ssid: wifi_ssid
             ]
@@ -48,7 +47,6 @@ defmodule SampleApp.WiFi do
   defp maybe_put(keyword, key, value) when is_binary(value), do: Keyword.put(keyword, key, value)
 
   def handle_sta_connected, do: IO.puts("wifi: connected to AP")
-  def handle_sta_disconnected, do: IO.puts("wifi: disconnected from AP")
 
   def handle_sta_got_ip(ip_info) do
     IO.puts("wifi: got IP #{inspect(ip_info)}")
